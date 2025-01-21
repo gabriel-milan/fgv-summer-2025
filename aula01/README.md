@@ -1,5 +1,7 @@
 # Aula 01
 
+Slides: https://docs.google.com/presentation/d/1r_-6uFc6sHtl457LrfHIcb6WOOz5mkMyglCqnCVYciE/edit?usp=sharing
+
 ## Scripts
 
 - `01_raw.py`: Implementação mais crua possível
