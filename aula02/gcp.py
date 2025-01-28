@@ -25,34 +25,22 @@ def infer_schema_from_file(
         "date": "STRING",
     }
 
-    if file_format.upper() == "CSV":
-        # Read first few rows of CSV to infer schema
-        df = pd.read_csv(file_path, nrows=1000)
-        schema = []
+    try:
+        if file_format.upper() == "CSV":
+            df = pd.read_csv(file_path, nrows=100)
+        elif file_format.upper() == "PARQUET":
+            df = pd.read_parquet(file_path)
 
+        schema = []
         for column, dtype in df.dtypes.items():
             bq_type = type_mapping.get(str(dtype), "STRING")
             schema.append(bigquery.SchemaField(column, bq_type))
 
         return schema
 
-    elif file_format.upper() == "PARQUET":
-        # For Parquet, read the schema directly
-        df = pd.read_parquet(file_path)
-        schema = []
-
-        for column, dtype in df.dtypes.items():
-            # Convert datetime columns to string format
-            if str(dtype).startswith("datetime"):
-                df[column] = df[column].dt.strftime("%Y-%m-%d %H:%M:%S")
-
-            bq_type = type_mapping.get(str(dtype), "STRING")
-            schema.append(bigquery.SchemaField(column, bq_type))
-
-        # Save the modified dataframe back to parquet
-        df.to_parquet(file_path, index=False)
-
-        return schema
+    except Exception as e:
+        print(f"Error inferring schema: {str(e)}")
+        raise
 
     else:
         raise ValueError(f"Unsupported file format: {file_format}")
