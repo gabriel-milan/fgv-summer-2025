@@ -9,6 +9,30 @@ from google.cloud import bigquery
 import pandas as pd
 
 
+def get_bigquery_client() -> bigquery.Client:
+    """
+    Get a BigQuery client instance
+    """
+    # Check if GOOGLE_APPLICATION_CREDENTIALS environment variable is set
+    if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
+        raise ValueError(
+            "GOOGLE_APPLICATION_CREDENTIALS environment variable is not set"
+        )    
+    return bigquery.Client()
+
+
+def get_gcs_client() -> storage.Client:
+    """
+    Get a GCS client instance
+    """
+    # Check if GOOGLE_APPLICATION_CREDENTIALS environment variable is set
+    if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
+        raise ValueError(
+            "GOOGLE_APPLICATION_CREDENTIALS environment variable is not set"
+        )
+    return storage.Client()
+
+
 def infer_schema_from_file(
     file_path: str, file_format: str
 ) -> List[bigquery.SchemaField]:
@@ -75,6 +99,8 @@ def upload_to_gcs_and_create_biglake(
     dataset_id: str,
     table_name: str,
     file_format: str = "CSV",
+    storage_client: storage.Client = None,
+    bq_client: bigquery.Client = None,
 ):
     """
     Upload a local file to GCS and create a BigLake table with auto-inferred schema
@@ -85,19 +111,15 @@ def upload_to_gcs_and_create_biglake(
         dataset_id: BigQuery dataset ID (will be used as bucket name)
         table_name: Name of the table to create
         file_format: Format of the input file (CSV or PARQUET)
+        storage_client: GCS client instance
+        bq_client: BigQuery client instance
     """
     try:
-        # Check if GOOGLE_APPLICATION_CREDENTIALS environment variable is set
-        if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
-            raise ValueError(
-                "GOOGLE_APPLICATION_CREDENTIALS environment variable is not set"
-            )
-
         # Initialize GCS client
-        storage_client = storage.Client(project=project_id)
+        storage_client = storage_client or get_gcs_client()
 
         # Initialize BigQuery client
-        bq_client = bigquery.Client(project=project_id)
+        bq_client = bq_client or get_bigquery_client()
 
         # Create dataset if it doesn't exist
         create_dataset_if_not_exists(bq_client, project_id, dataset_id)
