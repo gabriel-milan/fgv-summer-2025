@@ -2,12 +2,11 @@
 Script to upload a local file to GCS and create a BigLake table with auto-inferred schema
 """
 
-from google.cloud import storage
-from google.cloud import bigquery
-from google.oauth2 import service_account
-import pandas as pd
 import os
 from typing import List
+from google.cloud import storage
+from google.cloud import bigquery
+import pandas as pd
 
 
 def infer_schema_from_file(
