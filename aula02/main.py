@@ -11,6 +11,7 @@ from gcp import upload_to_gcs_and_create_biglake
 task_generate_data = task(generate_data)
 task_upload_to_gcs_and_create_biglake = task(upload_to_gcs_and_create_biglake)
 
+
 @task
 def save_data(df: pd.DataFrame) -> Path:
     """
@@ -26,6 +27,7 @@ def save_data(df: pd.DataFrame) -> Path:
     df.to_csv(path, index=False)
     return path
 
+
 # Define the flow
 @flow(log_prints=True)
 def main():
@@ -38,9 +40,10 @@ def main():
     # Upload the CSV file to GCS and create a BigLake table
     task_upload_to_gcs_and_create_biglake(
         local_file_path=path,
-        project_id="rj-escritorio-dev",
-        dataset_id="fgv_summer_2025",
+        project_id="emap-summer-2025",
+        dataset_id="publico_jaffle_shop",
         table_name="aula02",
+        region="us-central1",
         file_format="CSV",
     )
 

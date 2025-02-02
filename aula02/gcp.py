@@ -17,7 +17,7 @@ def get_bigquery_client() -> bigquery.Client:
     if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
         raise ValueError(
             "GOOGLE_APPLICATION_CREDENTIALS environment variable is not set"
-        )    
+        )
     return bigquery.Client()
 
 
@@ -71,7 +71,7 @@ def infer_schema_from_file(
 
 
 def create_dataset_if_not_exists(
-    bq_client: bigquery.Client, project_id: str, dataset_id: str
+    bq_client: bigquery.Client, project_id: str, dataset_id: str, region: str = "US"
 ):
     """
     Create a BigQuery dataset if it doesn't exist
@@ -80,6 +80,7 @@ def create_dataset_if_not_exists(
         bq_client: BigQuery client instance
         project_id: Google Cloud project ID
         dataset_id: BigQuery dataset ID to create
+        region: BigQuery dataset region (default: "US")
     """
     dataset_ref = f"{project_id}.{dataset_id}"
     try:
@@ -88,7 +89,7 @@ def create_dataset_if_not_exists(
     except Exception:
         # Dataset does not exist, create it
         dataset = bigquery.Dataset(dataset_ref)
-        dataset.location = "US"  # Specify the location
+        dataset.location = region  # Use the provided region
         dataset = bq_client.create_dataset(dataset)
         print(f"Created dataset {dataset_ref}")
 
@@ -99,6 +100,7 @@ def upload_to_gcs_and_create_biglake(
     dataset_id: str,
     table_name: str,
     file_format: str = "CSV",
+    region: str = "US",
     storage_client: storage.Client = None,
     bq_client: bigquery.Client = None,
 ):
@@ -111,6 +113,7 @@ def upload_to_gcs_and_create_biglake(
         dataset_id: BigQuery dataset ID (will be used as bucket name)
         table_name: Name of the table to create
         file_format: Format of the input file (CSV or PARQUET)
+        region: BigQuery dataset region (default: "US")
         storage_client: GCS client instance
         bq_client: BigQuery client instance
     """
@@ -122,7 +125,7 @@ def upload_to_gcs_and_create_biglake(
         bq_client = bq_client or get_bigquery_client()
 
         # Create dataset if it doesn't exist
-        create_dataset_if_not_exists(bq_client, project_id, dataset_id)
+        create_dataset_if_not_exists(bq_client, project_id, dataset_id, region)
 
         # Delete table if it exists
         table_id = f"{project_id}.{dataset_id}.{table_name}"
