@@ -1,0 +1,8 @@
+packages:
+  - package: dbt-labs/dbt_utils
+    version: 1.3.0
+  - package: calogica/dbt_date
+    version: 0.10.1
+  - package: dbt-labs/audit_helper
+    version: 0.12.1
+sha1_hash: 7747333e83afc52f4edd5c3a249ec18d181c9f43

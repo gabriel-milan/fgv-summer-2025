@@ -1,0 +1,19 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: emap-summer-2025
+      dataset: 123456789_dev
+      location: US
+      threads: 10
+      keyfile: /Users/thiagotrabach/.credentials/emap-summer-2025-admin.json
+    prod:
+      type: bigquery
+      method: service-account
+      project: emap-summer-2025
+      dataset: 123456789_prod
+      location: US
+      threads: 10
+      keyfile: /Users/thiagotrabach/.credentials/emap-summer-2025-admin.json

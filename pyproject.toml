@@ -12,6 +12,10 @@ dependencies = [
     "google-cloud-bigquery>=3.29.0",
     "pyarrow>=19.0.0",
     "numpy>=2.2.2",
+    "dbt-core>=1.9.2",
+    "dbt-bigquery>=1.9.1",
+    "recce>=0.51.3",
+    "pre-commit>=4.1.0",
 ]
 
 [build-system]
