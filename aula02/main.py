@@ -40,8 +40,8 @@ def main():
     # Upload the CSV file to GCS and create a BigLake table
     task_upload_to_gcs_and_create_biglake(
         local_file_path=path,
-        project_id="rj-escritorio-dev",
-        dataset_id="fgv_summer_2025",
+        project_id="emap-summer-2025",
+        dataset_id="publico_jaffle_shop",
         table_name="aula02",
         region="us-central1",
         file_format="CSV",
