@@ -1,5 +1,9 @@
 # Aulas 03 e 04 - dbt
 
+Projeto desenvolvido para a disciplina `Construção de Infraestrutura de Nuvem para Construção de Pipes de Dados` da Escola de Matemática Aplicada da Fundação Getulio Vargas (EMAp-FGV), ministrada pelos professores Thiago Trabach e Gabriel Milan.
+
+Este projeto é baseado no exemplo [jaffle-shop](https://github.com/dbt-labs/jaffle-shop/) e tem como objetivo praticar o uso do dbt (data build tool) para transformação de dados.
+
 
 
 ## Indíce
@@ -25,16 +29,8 @@ dbt deps
 ```
 
 ### 2. Configuração da autenticação
-3. Obtenha o arquivo de credenciais do Google Cloud `rj-sms-dev-dbt.json`.
-4. Copie o arquivo `./profiles.yml` para o diretório de sua preferência.
- 5. Na cópia do arquivo `profiles.yml` altere o path da chave `keyfile` no profile `dev` para onde está armazenada suas credenciais do Google Cloud.
- 6. Crie uma variável de ambiente `DBT_PROFILES_DIR` apontando para o diretório onde está a cópia do `profiles.yml` 
+1. Salve no diretório de sua preferência a chave de acesso do Google Cloud `emap-summer-2025-matricula.json`.
+2. No arquivo `./profiles.yml` localizado na raiz do projeto, altere:
+    - `dataset` para o número da sua matrícula seguido de `_dev` ou `_prod`, conforme o ambiente de desenvolvimento ou produção.
+    - `keyfile` para o path do arquivo de credenciais do Google Cloud.
 
-    **ex.** DBT_PROFILES_DIR='/Users/foo/.credentials/'
-
-
-### 3. Configuração do ambiente de dev
-7. Crie uma variável de ambiente `DBT_USER` com o nome de usuário de sua preferência 
-8. Dê privilegio de execução para o script `./recce.sh`
-    - **Linux e MacOS**: `chmod +x recce.sh`
-    - **Windows**: Não precisa
