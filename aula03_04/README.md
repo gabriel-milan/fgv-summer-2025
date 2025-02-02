@@ -4,7 +4,9 @@ Projeto desenvolvido para a disciplina `Construção de Infraestrutura de Nuvem 
 
 Este projeto é baseado no exemplo [jaffle-shop](https://github.com/dbt-labs/jaffle-shop/) e tem como objetivo praticar o uso do dbt (data build tool) para transformação de dados.
 
+Slides da aula:
 
+- [Aula 03](https://docs.google.com/presentation/d/12TiOXYbH-kf4qj1PrcAH_ugihK2_Qsv3xED4LN7nkUM/edit?usp=sharing)
 
 ## Indíce
 
