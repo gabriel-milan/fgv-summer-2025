@@ -185,6 +185,7 @@ target/
 target_base/
 dbt_packages/
 logs/
+.user.yml
 
 # VSCode
 .vscode/
