@@ -179,3 +179,13 @@ cython_debug/
 
 # MacOS
 .DS_Store
+
+# dbt
+target/
+target-base/
+dbt_packages/
+logs/
+.user.yml
+
+# VSCode
+.vscode/
