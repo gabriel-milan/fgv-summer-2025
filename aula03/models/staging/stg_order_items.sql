@@ -1,6 +1,6 @@
 with
 
-    source as (select * from {{ source("publico_jaffle_shop", "raw_items") }}),
+    source as (select * from {{ source("publico_jaffle_shop", "raw_order_items") }}),
 
     renamed as (
 
