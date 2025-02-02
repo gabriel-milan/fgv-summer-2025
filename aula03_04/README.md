@@ -1,7 +1,5 @@
 # Aulas 03 e 04 - dbt
 
-Projeto desenvolvido para a disciplina `Construção de Infraestrutura de Nuvem para Construção de Pipes de Dados` da Escola de Matemática Aplicada da Fundação Getulio Vargas (EMAp-FGV), ministrada pelos professores Thiago Trabach e Gabriel Milan.
-
 Este projeto é baseado no exemplo [jaffle-shop](https://github.com/dbt-labs/jaffle-shop/) e tem como objetivo praticar o uso do dbt (data build tool) para transformação de dados.
 
 Slides da aula:
