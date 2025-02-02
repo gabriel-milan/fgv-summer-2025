@@ -5,15 +5,15 @@ default:
       type: bigquery
       method: service-account
       project: emap-summer-2025
-      dataset: 123456789_dev
-      location: US
+      dataset: matricula_dev
+      location: us-central1
       threads: 10
-      keyfile: /Users/thiagotrabach/.credentials/emap-summer-2025-admin.json
+      keyfile: /path/to/emap-summer-2025-matricula.json
     prod:
       type: bigquery
       method: service-account
       project: emap-summer-2025
-      dataset: 123456789_prod
-      location: US
+      dataset: matricula_prod
+      location: us-central1
       threads: 10
-      keyfile: /Users/thiagotrabach/.credentials/emap-summer-2025-admin.json
+      keyfile: /path/to/emap-summer-2025-matricula.json
