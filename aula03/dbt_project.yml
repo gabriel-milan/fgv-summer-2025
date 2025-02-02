@@ -22,9 +22,8 @@ clean-targets:
 vars:
   "dbt_date:time_zone": "America/Los_Angeles"
 
-seeds:
-  jaffle_shop:
-    +schema: publico_jaffle
+flags:
+  require_yaml_configuration_for_mf_time_spines: False
 
 models:
   jaffle_shop:
