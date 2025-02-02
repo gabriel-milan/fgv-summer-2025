@@ -182,7 +182,7 @@ cython_debug/
 
 # dbt
 target/
-target_base/
+target-base/
 dbt_packages/
 logs/
 .user.yml

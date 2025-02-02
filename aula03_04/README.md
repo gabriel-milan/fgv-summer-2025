@@ -57,13 +57,25 @@ jaffle_shop/
 ## Desenvolvimento
 1. Antes de começar a desenvolver, certifique-se de que está na branch correta:
 ```bash
-git checkout -b feature/sua-feature
+git checkout -b $BRANCH_NAME
 ```
 
 2. Para testar suas alterações:
 ```bash
 dbt run
 dbt test
+```
+
+3. Para visualizar as diferenças entre a branch atual e a branch `main`:
+```bash
+git checkout main
+dbt docs generate --target prod --target-path target-base/
+
+git checkout $BRANCH_NAME
+dbt build -s "state:modified+" --defer --state target-base/
+dbt docs generate
+
+recce server
 ```
 
 ## Comandos Úteis
