@@ -17,7 +17,7 @@ Slides da aula:
 ## Setup
 
 ### IDE e extensões
-Para ter uma experiência de desenvolvimento mais completa em relação às funcionalidades do dbt, é recomendada a instalação do [VSCODE](https://code.visualstudio.com/) junto com a extensão [dbt Power Tools](https://marketplace.visualstudio.com/items?itemName=innoverio.vscode-dbt-power-user).
+Para ter uma experiência de desenvolvimento mais completa em relação às funcionalidades do dbt, é recomendada a instalação do [VS Code](https://code.visualstudio.com/) junto com a extensão [dbt Power Tools](https://marketplace.visualstudio.com/items?itemName=innoverio.vscode-dbt-power-user).
 
 
 ### 1. Instalação das dependências
@@ -25,21 +25,29 @@ Para ter uma experiência de desenvolvimento mais completa em relação às func
 ```bash
 pip install dbt-core dbt-bigquery recce
 ```
-Caso esteja usando o uv, pode usar o comando:
-```bash
-uv sync
-```
 
-2. Instale os pacotes do dbt, mas antes certifique-se de que está no diretório da aula 03
+2. Instale os pacotes do dbt, mas antes certifique-se de que está no diretório `aula03_04`
 ```bash
 dbt deps
 ```
 
 ### 2. Configuração da autenticação
-1. Salve no diretório de sua preferência a chave de acesso do Google Cloud `emap-summer-2025-matricula.json`.
+
+1. Salve no diretório de sua preferência a chave de acesso do Google Cloud.
+
+
 2. No arquivo `./profiles.yml` localizado na raiz do projeto, altere:
     - `dataset` para o número da sua matrícula seguido de `_dev` ou `_prod`, conforme o ambiente de desenvolvimento ou produção.
     - `keyfile` para o path do arquivo de credenciais do Google Cloud.
+
+
+3. Na linha de comando, execute o comando abaixo para verificar se a chave de acesso está sendo carregada corretamente:
+
+```bash
+dbt debug
+```
+
+Certifique-se que você está na raiz do projeto (pasta `aula03_04`) e que o arquivo de credenciais está no diretório correto.
 
 ## Estrutura do Projeto
 ```
@@ -79,9 +87,12 @@ recce server
 ```
 
 ## Comandos Úteis
-- `dbt run`: Executa as transformações
-- `dbt test`: Executa os testes
+- `dbt debug`: Verifica a configuração do projeto
+- `dbt compile`: Compila os modelos
+- `dbt run`: Compila e executa as transformações
+- `dbt test`: Compila e executa os testes
+- `dbt build`: Compila, executa as transformações e os testes
 - `dbt docs generate`: Gera a documentação
 - `dbt docs serve`: Serve a documentação localmente
-- `dbt debug`: Verifica a configuração do projeto
+
 

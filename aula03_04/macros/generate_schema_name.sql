@@ -2,22 +2,26 @@
 
     {% set default_schema = target.schema %}
 
-    {# seeds go in a global `raw` schema #}
-    {% if node.resource_type == 'seed' %}
-        {{ custom_schema_name | trim }}
+    {% if custom_schema_name is none %}
 
-    {# non-specified schemas go to the default target schema #}
-    {% elif custom_schema_name is none %}
         {{ default_schema }}
 
-
-    {# specified custom schema names go to the schema name prepended with the the default schema name in prod (as this is an example project we want the schemas clearly labeled) #}
-    {% elif target.name == 'prod' %}
-        {{ default_schema }}_{{ custom_schema_name | trim }}
-
-    {# specified custom schemas go to the default target schema for non-prod targets #}
     {% else %}
-        {{ default_schema }}
+
+        {% if target.name == 'prod' %}
+
+            {{ custom_schema_name | trim }}_prod
+
+        {% elif target.name == 'dev' %}
+
+            {{ custom_schema_name | trim }}_dev
+
+        {% else %}
+
+            {{ custom_schema_name | trim }}
+
+        {% endif %}
+
     {% endif %}
 
 {% endmacro %}
