@@ -189,3 +189,7 @@ logs/
 
 # VSCode
 .vscode/
+
+# Cursor
+.cursorignore
+.cursor/
