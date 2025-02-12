@@ -5,7 +5,7 @@ version: "3.0.0"
 require-dbt-version: ">=1.5.0"
 
 
-profile: emap # Put your profile here
+profile: default # Put your profile here
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
