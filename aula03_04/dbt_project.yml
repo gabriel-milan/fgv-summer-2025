@@ -34,7 +34,7 @@ models:
 #    marts:
 #      +materialized: table
 
-# tests:
-#   jaffle_shop:
-#     +store_failures: true
-#     +schema: 123456789_test
+tests:
+  jaffle_shop:
+    +store_failures: true
+    +schema: '123456789'
