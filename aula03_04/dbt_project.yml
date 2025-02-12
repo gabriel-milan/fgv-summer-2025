@@ -28,12 +28,13 @@ flags:
 
 models:
   jaffle_shop:
-    staging:
-      +materialized: table
-    marts:
-      +materialized: table
+    +materialized: table
+#    staging:
+#      +materialized: table
+#    marts:
+#      +materialized: table
 
 # tests:
 #   jaffle_shop:
 #     +store_failures: true
-#     +schema: 123456789_test
+#     +schema: '123456789'
