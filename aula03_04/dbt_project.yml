@@ -5,7 +5,7 @@ version: "3.0.0"
 require-dbt-version: ">=1.5.0"
 
 
-profile: default # Put your profile here
+profile: emap # Put your profile here
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -29,12 +29,9 @@ flags:
 models:
   jaffle_shop:
     +materialized: table
-#    staging:
-#      +materialized: table
-#    marts:
-#      +materialized: table
+    +schema: '123456789'
 
-# tests:
-#   jaffle_shop:
-#     +store_failures: true
-#     +schema: '123456789'
+tests:
+  jaffle_shop:
+    +store_failures: true
+    +schema: '123456789'

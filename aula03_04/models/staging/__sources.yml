@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: publico_jaffle_shop
+    schema: publico_jaffle_shop
+    tables:
+      - name: raw_customers
+      - name: raw_orders
+      - name: raw_order_items
+      - name: raw_stores
+      - name: raw_products
+      - name: raw_supplies

@@ -1,3 +1,5 @@
+{{ config(materialized="table", alias="orders_monolito", schema="123456789") }}
+
 select
     base_orders.*,
     order_items_summary.order_cost,
@@ -28,7 +30,7 @@ from
             round(cast((order_total / 100) as numeric), 2) as order_total,
 
             timestamp_trunc(cast(ordered_at as timestamp), day) as ordered_at
-            
+
         from `emap-summer-2025`.`publico_jaffle_shop`.`raw_orders`
     ) as base_orders
 left join
